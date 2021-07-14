@@ -1,5 +1,42 @@
-#table {
-    border-style: solid;
-    border-color: rgb(88, 88, 88);
-    border-collapse: collapse;
+* {
+  margin: auto;
+  
 }
+
+.game-container {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+}
+
+.table {
+  border: 1px solid #4b636e;
+  border-collapse: collapse;
+  &:after{
+    display: block;
+    padding-top: 90%;
+  }
+}
+
+
+.cell {
+  width: 1vw;
+  height: 1vw;
+}
+
+[value="dead"] {
+  background-color: #78909c;
+ }
+
+[value="alive"] {
+  background-color: #a7c0cd;
+  animation-name: isAlive;
+  animation-duration: 2s;
+}
+
+@keyframes isAlive {
+  from {background-color: #78909c;}
+  to {background-color: #e5f3fa;}
+}
+
+

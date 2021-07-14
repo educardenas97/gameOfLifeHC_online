@@ -28,11 +28,15 @@ export default class View{
     }
 
     static drawCell(text, index, row){
-        var cell = row.insertCell(index);
+        let cell = row.insertCell(index);
+        cell.className = "cell";
         if (text === false) {
             cell.innerHTML = " ";
+            cell.setAttribute("value", "dead");
         }else {
-            cell.innerHTML = ".";
+            cell.innerHTML = " ";
+            cell.setAttribute("value", "alive");
+            //cell.style.backgroundColor = "rgb(204, 204, 204)";
         }
     }
 
