@@ -1,4 +1,4 @@
-export default class View{
+export default class Render{
     constructor(){
         
     }
@@ -7,9 +7,9 @@ export default class View{
     drawTable(array){
         let table = document.getElementById("table");
         for (let i = 0; i < array.length; i++) {
-            let row = View.drawRow(table, i);
+            let row = Render.drawRow(table, i);
             for (let j = 0; j < array[i].length; j++) {
-                View.drawCell(array[i][j], j, row);
+                Render.drawCell(array[i][j], j, row);
             }
         }
     }

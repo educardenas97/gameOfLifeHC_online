@@ -1,16 +1,15 @@
 import Core from './core.js';
-import View from './view.js';
+import Render from './render.js';
+import Input from './input.js';
 
-const dimentions = 30;
-const delay = 1000;
+let delayInput = new Input("speed-input", "speed-value");
+let dimensionsInput = new Input("dimension-input", "dimension-input");
+let dimension = parseInt(dimensionsInput.getValue());
 
-
-let main = async () => {
-    let game = new Core(dimentions);
-    let view = new View();
-    console.log(view);
+let startCore = (dimension) => {
+    let game = new Core(dimension);
     /*Static element
-
+    
     game.setField(1, 1, true);
     game.setField(1, 2, true);
     game.setField(1, 3, true);*/
@@ -21,15 +20,25 @@ let main = async () => {
     game.setField(2,3,true);
     game.setField(1,3,true);
     game.setField(0,3,true);
-
-
-    while(true) {
-        view.drawTable(game.gameStatus);
-        game.update();
-        await view.addDelay(delay);
-        view.eraseTable();
-    }
-        
+    
+    return game;
+    
 }
 
-main();
+let gameControl = async () => {
+    let render = new Render();
+    let game = startCore(dimension);    
+    
+    while(true) {
+        render.drawTable(game.gameStatus);
+        game.update();
+        await render.addDelay(delayInput.getValue()*1000);
+        render.eraseTable();
+        if (dimension !== parseInt(dimensionsInput.getValue())) {
+            dimension = parseInt(dimensionsInput.getValue());
+            game = startCore(dimension);
+        }
+    }
+}
+
+gameControl();
