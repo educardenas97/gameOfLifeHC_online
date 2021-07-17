@@ -4,12 +4,14 @@ export default class Render{
     }
 
     //Create a function to draw the table from the bidiemental array
-    drawTable(array){
+    drawTable(game){
+        let array = game.gameStatus;
         let table = document.getElementById("table");
         for (let i = 0; i < array.length; i++) {
             let row = Render.drawRow(table, i);
             for (let j = 0; j < array[i].length; j++) {
-                Render.drawCell(array[i][j], j, row);
+                let cell = Render.drawCell(array[i][j], j, row);
+                Render.addFunction(cell, game, i, j);
             }
         }
     }
@@ -21,6 +23,15 @@ export default class Render{
             table.removeChild(table.lastChild);
         }
     }
+
+    //Implement a function to add click events to the cells
+    static addFunction(cell, game, i, j){
+        cell.addEventListener("click", function(event){
+            game.setField(i, j, cell.getAttribute("value") === "alive" ? false : true);
+            cell.setAttribute("value", cell.getAttribute("value") === "alive" ? "dead" : "alive");
+        });
+    }
+
     
     static drawRow(table, index){
         let row = table.insertRow(index);
@@ -33,10 +44,11 @@ export default class Render{
         if (text === false) {
             cell.innerHTML = " ";
             cell.setAttribute("value", "dead");
+            return cell;
         }else {
             cell.innerHTML = " ";
             cell.setAttribute("value", "alive");
-            //cell.style.backgroundColor = "rgb(204, 204, 204)";
+            return cell;
         }
     }
 
