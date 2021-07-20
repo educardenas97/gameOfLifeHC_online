@@ -7,8 +7,14 @@
   position: absolute;
   left: 50%;
   right: 50%;
+}
 
-  
+.rules {
+  left: 0;
+  right: 0;
+  font: 1em sans-serif;
+  color: #fff;
+  text-align: center;
 }
 
 .table {
@@ -30,19 +36,7 @@
 
 [value="dead"] {
   background-color: #78909c;
-}
-
-
-[value="dead"]:hover {
-  background-color: #78909c;
-  animation-name: isDead;
-  animation-duration: 2s;
-}
-
-@keyframes isDead {
-  from {background-color: #e5f3fa;}
-  to {background-color: #78909c;}
-}
+ }
 
 [value="alive"] {
   background-color: #a7c0cd;
